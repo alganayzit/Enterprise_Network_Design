@@ -10,7 +10,12 @@ This project demonstrates a scalable and resilient enterprise network architectu
 * **Connectivity:** Wireless LAN (WPA2-PSK) and DHCP for automated addressing.
 
 ## 🏗️ Topology Overview
-- **HQ (Headquarters):** Managed by R1 (Active) and R1-Backup (Standby) via HSRP.
-- **Branch Office:** Connected via OSPF to the HQ core.
-- **Guest Segment:** Isolated wireless network with restricted access to internal VLANs.
-- **ISP Simulation:** Edge routers performing NAT to reach a simulated 8.8.8.8 internet endpoint.
+* **HQ (Headquarters):** Managed by R1 (Active) and R1-Backup (Standby) via HSRP.
+* **Branch Office:** Connected via OSPF to the HQ core.
+* **Guest Segment:** Isolated wireless network with restricted access to internal VLANs.
+* **ISP Simulation:** Edge routers performing NAT to reach a simulated 8.8.8.8 internet endpoint.
+   
+## 🧪 **Verification Tests**
+* **Redundancy Test:** Shutdown R1 and verify that R1-Backup takes over the gateway (HSRP).
+* **Security Test:** Verify Guest PC cannot ping the Accounting VLAN (ACL 101).
+* **Connectivity Test:** Ping 8.8.8.8 from any internal PC to verify NAT and Routing.
