@@ -1,0 +1,8 @@
+ACL:
+To enforce security policies between different sites, an Extended Access Control List (ACL 101) was implemented on R3. This policy isolates the Guest Network (VLAN 50) from the sensitive Accounting Department (VLAN 10) in the HQ, while still allowing general connectivity to other network segments and the internet.
+
+R3(config)#access-list 101 deny ip 192.168.50.0 0.0.0.255 192.168.10.0 0.0.0.255	
+R3(config)#access-list 101 permit ip any any
+
+R3(config)#interface gigabitEthernet 0/1 
+R3(config-if)#ip access-group 101 in

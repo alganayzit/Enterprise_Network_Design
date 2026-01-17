@@ -1,0 +1,30 @@
+Router-on-a-Stick
+
+R1_Backup(config-if)#int g0/0.10
+R1_Backup(config-subif)#encapsulation dot1q 10
+R1_Backup(config-subif)#ip address 192.168.10.253 255.255.255.0
+R1_Backup(config-subif)#int g0/0.20
+R1_Backup(config-subif)#encapsulation dot1q 20
+R1_Backup(config-subif)#ip address 192.168.20.253 255.255.255.0
+R1_Backup(config-subif)#int g0/0.30
+R1_Backup(config-subif)#encapsulation dot1q 30
+R1_Backup(config-subif)#ip address 192.168.30.253 255.255.255.0
+
+HSRP Configuration
+
+R1_Backup(config)#interface g0/0.10
+R1_Backup(config-subif)#standby 1 ip 192.168.10.1
+R1_Backup(config-subif)#interface g0/0.20
+R1_Backup(config-subif)#standby 2 ip 192.168.20.1
+R1_Backup(config-subif)#interface g0/0.30
+R1_Backup(config-subif)#standby 3 ip 192.168.30.1
+
+OSPF Configuration
+
+R1_Backup(config)#router ospf 1
+R1_Backup(config-router)#router-id 1.1.1.2
+R1_Backup(config-router)#network 192.168.10.0 0.0.0.255 area 0
+R1_Backup(config-router)#network 192.168.20.0 0.0.0.255 area 0
+R1_Backup(config-router)#network 192.168.30.0 0.0.0.255 area 0
+R1_Backup(config-router)#network 10.10.10.0 0.0.0.255 area 0
+R1_Backup(config-router)#network 172.16.10.0 0.0.0.255 area 0

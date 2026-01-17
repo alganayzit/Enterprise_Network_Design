@@ -1,0 +1,6 @@
+SW1(config)#interface fastEthernet 0/1
+SW1(config-if)#switchport mode access 
+SW1(config-if)#switchport port-security 
+SW1(config-if)#switchport port-security maximum 1
+SW1(config-if)#switchport port-security violation restrict 
+SW1(config-if)#switchport port-security mac-address sticky 

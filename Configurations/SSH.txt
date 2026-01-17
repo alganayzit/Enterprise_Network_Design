@@ -1,0 +1,9 @@
+R1(config)#ip domain-name project.local
+R1(config)#crypto key generate rsa
+
+How many bits in the modulus [512]: 1024
+
+R1(config)#username admin privilege 15 secret password1234!
+R1(config)#line vty 0 4
+R1(config-line)#transport input ssh
+R1(config-line)#login local

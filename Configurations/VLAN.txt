@@ -1,0 +1,29 @@
+Creating VLANs
+
+Switch#conf t
+Switch(config)#vlan 10
+Switch(config-vlan)#name Accounting
+Switch(config-vlan)#ex
+Switch(config)#vlan 20
+Switch(config-vlan)#name HR
+Switch(config-vlan)#ex
+Switch(config)#vlan 30
+Switch(config-vlan)#name SALES
+Switch(config-vlan)#do wr
+
+Assigning Ports
+
+Switch#conf t
+Switch(config)#interface range fastEthernet 0/1-2
+Switch(config-if-range)#switchport mode access
+Switch(config-if-range)#switchport access vlan 10
+
+Switch#conf t
+Switch(config)#interface range fastEthernet 0/3-4
+Switch(config-if-range)#switchport mode access
+Switch(config-if-range)#switchport access vlan 20
+
+Switch#conf t
+Switch(config)#interface range fastEthernet 0/5-6
+Switch(config-if-range)#switchport mode access
+Switch(config-if-range)#switchport access vlan 30

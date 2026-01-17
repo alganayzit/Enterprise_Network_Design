@@ -1,0 +1,47 @@
+Interfaces
+R1
+R1(config)#interface g0/2
+R1(config-if)#ip address 203.0.113.1 255.255.255.252
+R1(config-if)#no sh
+
+ISP
+ISP(config)#interface g0/0
+ISP(config-if)#ip address 203.0.113.2 255.255.255.252
+ISP(config-if)#no sh
+
+Loopback Configuration
+ISP(config)#interface loopback 0
+ISP(config-if)#ip address 8.8.8.8 255.255.255.255
+ISP(config-if)#no sh
+
+PAT
+R1(config)#interface g0/2
+R1(config-if)#ip nat outside
+
+R1(config-if)#interface g0/0.10
+R1(config-subif)#ip nat inside
+R1(config-subif)#interface g0/0.20
+R1(config-subif)#ip nat inside
+R1(config-subif)#interface g0/0.30
+R1(config-subif)#ip nat inside
+R1(config-subif)#interface g0/1
+R1(config-if)#ip nat inside
+
+# Creating an ACL to define which internal networks can be translated
+
+R1(config)#access-list 1 permit 192.168.10.0 0.0.0.255
+R1(config)#access-list 1 permit 192.168.20.0 0.0.0.255
+R1(config)#access-list 1 permit 192.168.30.0 0.0.0.255
+R1(config)#access-list 1 permit 172.16.10.0 0.0.0.255
+R1(config)#access-list 1 permit 192.168.50.0 0.0.0.255
+
+# Enable NAT (Overload / PAT)
+R1(config)#ip nat inside source list 1 interface g0/2 overload
+
+# Default Route to ISP 
+
+R1(config)#ip route 0.0.0.0 0.0.0.0 203.0.113.2
+
+# Default Route OSPF
+R1(config)#router ospf 1
+R1(config-router)#default-information originate 

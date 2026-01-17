@@ -1,0 +1,11 @@
+SW1
+
+SW1(config)#int range fastEthernet 0/21-22
+SW1(config-if-range)#channel-group 1 mode active 
+SW1(config-if-range)#switchport mode trunk 
+
+SW4
+
+SW4(config)#int range fastEthernet 0/21-22
+SW4(config-if-range)#channel-group 1 mode active 
+SW4(config-if-range)#switchport mode trunk 
