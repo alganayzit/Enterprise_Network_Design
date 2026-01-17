@@ -19,4 +19,4 @@ This project demonstrates a scalable and resilient enterprise network architectu
 * **Redundancy Test:** Shutdown R1 and verify that R1-Backup takes over the gateway (HSRP).
 * **Security Test:** Verify Guest PC cannot ping the Accounting VLAN (ACL 101).
 * **Connectivity Test:** Ping 8.8.8.8 from any internal PC to verify NAT and Routing.
-* ![Network Topology](./topology_screenshot.png)
+* ![Network Topology](./topology.screenshot.png)
